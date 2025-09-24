@@ -3,7 +3,7 @@
 Aquí subiremos el código del proyecto de la Feria Virtual
 
 # Participantes:
-- Miguel Ángel
+- Miguel Ángel Cadena
 - Pablo Peña
 - Jaime Martín
 - Mark
