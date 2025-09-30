@@ -1,11 +1,11 @@
-/* Center the entire form on the screen */
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
-  font-family: sans-serif;
+  font-family: 'Manrope', 'Aptos', sans-serif;
+  font-weight: 300;
   background-color: #f8f8f8;
 }
 
@@ -25,6 +25,8 @@ body {
 .form-container h2 {
   text-align: center;
   margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 400;
 }
 
 /* Field grouping */
@@ -37,6 +39,7 @@ body {
   display: block;
   margin-bottom: 6px;
   font-size: 14px;
+  font-weight: 600;
 }
 
 /* Inputs */
@@ -44,6 +47,7 @@ body {
   width: 100%;
   padding: 8px;
   font-size: 14px;
+  font-weight:300;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -56,6 +60,7 @@ body {
   background-color: #007bff;
   color: white;
   font-size: 16px;
+  font-weight: 700;
   border: none;
   border-radius: 4px;
   cursor: pointer;
