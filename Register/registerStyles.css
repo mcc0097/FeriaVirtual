@@ -5,6 +5,7 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  line-height: 1.4;
   font-family: 'Manrope', 'Aptos', sans-serif;
   font-weight: 300;
   background-color: #f8f8f8;
@@ -56,7 +57,7 @@ body {
 .form-group button {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #003594;
   color: white;
   font-size: 16px;
   font-weight: 700;
@@ -67,4 +68,23 @@ body {
 
 .form-group button:hover {
   background-color: #0056b3;
+}
+
+.error{
+  background-color: white;
+  color: #FF5B41;
+  border-radius: 5px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  font-family: 'Manrope','Aptos', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  border-left: 4px solid #b00020;
+}
+
+.errors{
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
 }
