@@ -71,7 +71,7 @@ body {
 }
 
 .error{
-  background-color: white;
+  background-color: #fddede;
   color: #FF5B41;
   border-radius: 5px;
   padding: 8px 12px;

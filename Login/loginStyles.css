@@ -69,3 +69,22 @@ body {
 .form-group button:hover {
   background-color: #0056b3;
 }
+
+.error {
+  background-color: #fddede;
+  color: #FF5B41;
+  border-radius: 5px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  font-family: 'Manrope','Aptos', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  border-left: 4px solid #b00020;
+}
+
+.errors {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+}
