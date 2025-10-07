@@ -10,3 +10,4 @@ Trabajaremos haciendo merge sobre la rama development con nuestras ramas individ
 - Jaime Martín
 - Mark
 - Miguel Contreras
+- Gonzalo
