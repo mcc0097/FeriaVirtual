@@ -3,14 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="loginStyles.css" />
     <title>Login window</title>
   </head>
   <body>
     <div class="form-container">
       <h2>Login</h2>
-      <form action="/login.html" method="post"><!--check this route, just an example-->
+      <form action="/login.html" method="post">
+        <!--check this route, just an example-->
         <div class="form-group">
           <label for="login">Username or Email</label>
           <input type="text" name="login" id="login" />
@@ -18,6 +22,11 @@
         <div class="form-group">
           <label for="password">Password</label>
           <input type="password" name="password" id="password" />
+        </div>
+        <!-- Forgot password link -->
+        <div class="form-aux">
+          <a href="/forgotPassword/forgotPassword.html">Forgot your password?</a>
+          <!--check this route, just an example-->
         </div>
         <div class="form-group">
           <button type="submit">Log in</button>

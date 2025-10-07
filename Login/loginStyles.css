@@ -57,7 +57,7 @@ body {
 .form-group button {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #003594;
   color: white;
   font-size: 16px;
   font-weight: 700;
@@ -87,4 +87,22 @@ body {
   margin-top: 25px;
   display: flex;
   flex-direction: column;
+}
+
+/* Auxiliary links (forgot password) */
+.form-aux {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -12px;
+  margin-bottom: 16px;
+}
+
+.form-aux a {
+  font-size: 13px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.form-aux a:hover {
+  text-decoration: underline;
 }

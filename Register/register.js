@@ -12,15 +12,15 @@ function evaluate(event){ //don't send data yet, evaluate data first
         errors.push("Username must be longer than 2 digits");
     }
 
-    const regExp1=/^\S+@\S+\.\S+$/
+    const regExp1 = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if(!regExp1.test(email)){  //check if it doesn't match the reg expression
         errors.push("Invalid e-mail");
     } 
-    // 5 characters|1 minusc letter| 1 capital letter| 1 number
+    // 6 characters|1 minusc letter| 1 capital letter| 1 number
 
     if(password.length<6 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password)){
-        errors.push("Invalid password. Must have at least 5 characters, 1 minuscule,1 capital and 1 number");
+        errors.push("Invalid password. Must have at least 6 characters, 1 minuscule,1 capital and 1 number");
     }
 
     if(confirmPassword!==password){
