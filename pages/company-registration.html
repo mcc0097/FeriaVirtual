@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Create Company Profile</title>
+    <link rel="stylesheet" href="../css/company-registration.css" />
+</head>
+
+<body>
+    <main class="container">
+        <!-- Central container for the content -->
+        <h1>Create Company Profile</h1>
+
+        <!-- Main form -->
+        <form id="form-company-profile" action="#" method="post" novalidate>
+            <!-- novalidate: we will validate it in JS in STEP 5 -->
+            <fieldset class="group">
+                <!-- Groups related fields -->
+                <legend>Information</legend>
+
+                <!-- Company name -->
+                <div class="field">
+                    <label for="companyName">Company Name</label>
+                    <!-- Accessible label -->
+                    <input id="companyName" name="companyName" type="text" placeholder="Ex. TechNova S.L." required/>
+                    <span class="error-message" id="error-companyName"></span>
+                </div>
+
+                <!-- Contact email -->
+                <div class="field">
+                    <label for="contactEmail">Contact Email</label>
+                    <input id="contactEmail" name="contactEmail" type="email"
+                    placeholder="company@domain.com" required autocomplete="email" />
+                    <span class="error-message" id="error-contactEmail"></span>
+
+                <!-- Phone -->
+                <div class="field">
+                    <label for="contactPhone">Phone</label>
+                    <input id="contactPhone" name="contactPhone" type="tel"
+                    placeholder="+34 600 000 000" required autocomplete="tel" />
+                    <span class="error-message" id="error-contactPhone"></span>
+                </div>
+
+                <!-- CIF / NIF -->
+                <div class="field">
+                    <label for="taxIdentification">CIF / NIF</label>
+                    <input id="taxIdentification" name="taxIdentification" type="text" placeholder="Ex, B12345678 or 12345678Z" required inputmode="text" autocomplete="off" />
+                    <span class="error-message" id="error-taxId"></span>
+                </div>
+
+                <div class="field"></div>
+                    <label for="companyDescription">Company Description</label>
+                    <textarea id="companyDescription" name="companyDescription"
+                    placeholder="Tell us briefly what your company does" rows="4" required></textarea>
+                    <span class="error-message" id="error-companyDescription"></span>
+                </div>
+
+                <!-- Website -->
+                <div class="field">
+                    <label for="website">Website</label>
+                    <input id="website" name="website" type="url" placeholder="https://www.yourcompany.com" autocomplete="url" required/>
+                    <span class="error-message" id="error-website"></span>
+                </div>
+
+                <!-- Logo URL -->
+                <div class="field">
+                    <label for="logoUrl">Logo URL</label>
+                    <input id="logoUrl" name="logoUrl" type="url" placeholder="https://.../logo.png" autocomplete="url" required/>
+                    <span class="error-message" id="error-logoUrl"></span>
+                </div>
+
+                <!-- Stand type -->
+                <div class="field">
+                    <label for="standType">Stand Type</label>
+                    <select id="standType" name="standType" required>
+                        <option value="">— Select an option —</option>
+                        <option value="products">Products</option>
+                        <option value="services">Services</option>
+                        <option value="jobs">Job Offers</option>
+                        <option value="mixed">Mixed</option>
+                    </select>
+                    <span class="error-message" id="error-standType"></span>
+                </div>
+            </fieldset>
+
+            <!-- Actions -->
+            <div class="actions">
+                <button type="submit" id="btnSave">Save</button>
+                <!-- Button to submit -->
+                <button type="reset" id="btnClear">Clear</button>
+                <!-- Resets the form -->
+            </div>
+        </form>
+    </main>
+
+    <script src="../js/company-registration.js" defer></script>
+    <!-- Link to external JS; defer = load after HTML -->
+</body>
+
+</html>
