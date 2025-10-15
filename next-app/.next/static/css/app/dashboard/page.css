@@ -1,0 +1,175 @@
+/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[5].use[3]!./src/styles/modules/dashboard.module.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************/
+/* Layout styles */
+.dashboard_dashboardLayout__UUHuM {
+  min-height: 100vh;
+  background-color: #f8f8f8;
+  font-family: 'Manrope', 'Aptos', sans-serif;
+}
+
+/* Navbar styles */
+.dashboard_navbar__Gz4tE {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard_logo__qYMQ_ {
+  color: #003594;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.dashboard_navItems__RoWBy {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.dashboard_navLink__ft6iT {
+  color: #4a5568;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.dashboard_navLink__ft6iT:hover {
+  color: #003594;
+}
+
+.dashboard_profileButton__oOfdg {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: #4a5568;
+  font-family: 'Manrope', 'Aptos', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.dashboard_profileButton__oOfdg:hover {
+  background-color: #f1f5f9;
+}
+
+/* Dropdown menu styles */
+.dashboard_dropdownContainer__tFd3z {
+  position: relative;
+}
+
+.dashboard_dropdownMenu__YjVGA {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  min-width: 200px;
+  margin-top: 0.5rem;
+  z-index: 100;
+}
+
+.dashboard_dropdownItem__v7_nr {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: #4a5568;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dashboard_dropdownItem__v7_nr:hover {
+  background-color: #f1f5f9;
+  color: #003594;
+}
+
+.dashboard_dropdownDivider__qKCM3 {
+  height: 1px;
+  background-color: #e2e8f0;
+  margin: 0.5rem 0;
+}
+
+/* Main content styles */
+.dashboard_mainContent__IQEBg {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.dashboard_welcomeCard__7XDHy {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+}
+
+.dashboard_welcomeTitle__quq_M {
+  color: #1a202c;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.dashboard_statsGrid__2Xqnv {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 1.5rem;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.dashboard_statCard__DPIJN {
+  background-color: white;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.dashboard_statCard__DPIJN:hover {
+  transform: translateY(-2px);
+}
+
+.dashboard_statTitle__Wnm7h {
+  color: #4a5568;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard_statValue__kX_rh {
+  color: #1a202c;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Logout button */
+.dashboard_logoutButton__mRXX0 {
+  background-color: #003594;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-family: 'Manrope', 'Aptos', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dashboard_logoutButton__mRXX0:hover {
+  background-color: #0056b3;
+}
