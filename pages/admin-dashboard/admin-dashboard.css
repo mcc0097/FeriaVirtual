@@ -6,13 +6,13 @@
     justify-content: space-between;
     gap: 20px;
     flex-wrap: wrap;
-    position: relative; /* Necesario para el logo */
+    position: relative;
 }
 
     .login-status {
         color: white;
         font-size: 16px;
-        flex: 1; /* Ocupa espacio disponible */
+        flex: 1;
         flex-shrink: 0;
     }
 
@@ -20,10 +20,10 @@
         color: white;
         font-size: 20px;
         font-weight: bold;
-        position: absolute; /* Vuelve a absolute PERO... */
-        left: 50%; /* ...centrado en el navbar */
+        position: absolute;
+        left: 50%;
         transform: translateX(-50%);
-        pointer-events: none; /* No bloquea clicks */
+        pointer-events: none;
     }
 
     .logout {
@@ -36,7 +36,7 @@
         font-size: 14px;
         transition: background-color 0.3s ease;
         flex-shrink: 0;
-        z-index: 10; /* Asegura que esté encima */
+        z-index: 10;
     }
         
         .logout:hover {
@@ -54,7 +54,7 @@
     .card {
         width: 200px;
         height: 300px;
-        background-color: #f0f0f0; /* Color gris claro */
+        background-color: #f0f0f0;
         border-radius: 8px;
         display: flex;
         flex-direction: column;
@@ -102,9 +102,9 @@
     }
 
     .logo {
-        position:static; /* En móvil, vuelve al flujo normal */
+        position:static;
         transform: none;
-        order: -1; /* Lo pone primero */
+        order: -1;
         font-size: 24px;
     }
     
