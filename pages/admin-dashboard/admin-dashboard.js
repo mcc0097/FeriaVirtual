@@ -1,20 +1,3 @@
-xerezano4
-xerezano4
-En canal de voz
-
-JaimeMartín — 11:52
-// Esta función obtiene el token JWT guardado en el localStorage
-function getToken() {
-    return localStorage.getItem('auth_token'); // Obtenemos el token desde el localStorage
-}
-
-// Esta función decodifica el token JWT para obtener la información del usuario
-Expandir
-admin-dashboard.js
-3 KB
-﻿
-JaimeMartín
-jaimemartin8822
 // Esta función obtiene el token JWT guardado en el localStorage
 function getToken() {
     return localStorage.getItem('auth_token'); // Obtenemos el token desde el localStorage
@@ -24,7 +7,7 @@ function getToken() {
 function decodeToken(token) {
     const payload = token.split('.')[1]; // JWT tiene 3 partes: Header, Payload, Signature
     const decoded = JSON.parse(atob(payload));
- // Decodificamos la parte Payload
+    // Decodificamos la parte Payload
     return JSON.parse(decoded); // Convertimos el Payload de JSON a un objeto
 }
 
@@ -70,35 +53,35 @@ if (window.location.pathname === '/admin.html') {
 // Manejo del formulario de login
 document.getElementById('loginForm')?.addEventListener('submit', function (event) {
     event.preventDefault(); // Prevenimos el comportamiento por defecto del formulario
-    
+
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
     // 🔐 Login real con tu backend
-fetch('http://localhost:3000/auth/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-        email: username,   // el campo "username" de tu formulario en realidad es el email
-        password: password
+    fetch('http://localhost:3000/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            email: username,   // el campo "username" de tu formulario en realidad es el email
+            password: password
+        })
     })
-})
-.then(response => {
-    if (!response.ok) {
-        throw new Error('Error al iniciar sesión');
-    }
-    return response.json();
-})
-.then(data => {
-    // ✅ Guardar el token real devuelto por tu backend
-    localStorage.setItem('auth_token', data.access_token);
-    // 🔄 Redirigir al panel correspondiente
-    window.location.href = 'admin.html';
-})
-.catch(error => {
-    alert('Usuario o contraseña incorrectos');
-    console.error(error);
-});
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al iniciar sesión');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // ✅ Guardar el token real devuelto por tu backend
+            localStorage.setItem('auth_token', data.access_token);
+            // 🔄 Redirigir al panel correspondiente
+            window.location.href = 'admin.html';
+        })
+        .catch(error => {
+            alert('Usuario o contraseña incorrectos');
+            console.error(error);
+        });
 
 });
 
