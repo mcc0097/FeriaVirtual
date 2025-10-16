@@ -1,144 +1,184 @@
-* { box-sizing: border-box; }
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
-body {
-  font-family: system-ui, Arial, sans-serif;
-  margin: 24px;
-  line-height: 1.45;
+* { 
+    box-sizing: border-box;
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Aptos', system-ui, sans-serif;
 }
 
+body {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Aptos', system-ui, sans-serif;
+    margin: 24px;
+    line-height: 1.45;
+    font-weight: 400;
+}
+
+/* CONTAINER */
 .container {
-  max-width: 680px;
-  margin: 0 auto;
+    max-width: 680px;
+    margin: 0 auto;
 }
 
 h1 {
-  margin-bottom: 16px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    color: #003594;
 }
 
+/* GROUPS AND FIELDSETS */
 .group {
-  margin-top: 16px;
-  padding: 12px;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
+    margin-top: 16px;
+    padding: 12px;
+    border: 1px solid #ededed;
+    border-radius: 8px;
 }
 
 legend {
     font-weight: 700;
     padding: 0 6px;
+    color: #003594;
 }
 
+/* FORM FIELDS */
 .field {
-  margin-top: 12px;
+    margin-top: 12px;
 }
 
 label {
-  display: block;
-  font-weight: 600;
+    display: block;
+    font-weight: 600;
+    color: #003594;
 }
 
 input, textarea, select, button {
-  font-size: 16px;
-  padding: 10px;
+    font-size: 16px;
+    padding: 10px;
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Aptos', system-ui, sans-serif;
 }
 
 input, textarea, select {
-  width: 100%;
-  margin-top: 6px;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
+    width: 100%;
+    margin-top: 6px;
+    border: 1px solid #ededed;
+    border-radius: 6px;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #003594;
 }
 
 small.help {
-  display: block;
-  margin-top: 6px;
-  font-size: 12px;
-  opacity: 0.8;
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    opacity: 0.8;
 }
 
+/* BUTTONS */
 .actions {
-  margin-top: 18px;
-  display: flex;
-  gap: 10px;
+    margin-top: 18px;
+    display: flex;
+    gap: 10px;
 }
 
 button {
-  cursor: pointer;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  background: #f9fafb;
+    cursor: pointer;
+    border: 1px solid #003594;
+    border-radius: 8px;
+    background: #003594;
+    color: white;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background: #f3f4f6;
+    background: #002a75;
 }
 
 button:active {
-  background: #e5e7eb;
+    background: #001f5c;
 }
 
+button[type="reset"] {
+    background: #ededed;
+    color: #003594;
+    border: 1px solid #ededed;
+}
+
+button[type="reset"]:hover {
+    background: #d9d9d9;
+}
+
+button[type="reset"]:active {
+    background: #c4c4c4;
+}
+
+/* LOGO PREVIEW */
 #logoPreviewContainer {
-  display: none;
-  margin-top: 12px;
+    display: none;
+    margin-top: 12px;
 }
 
 #logoPreviewContainer p {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #003594;
 }
 
 .logo-preview-wrapper {
-  position: relative;
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
 #logoPreview {
-  max-width: 200px;
-  max-height: 200px;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 8px;
+    max-width: 200px;
+    max-height: 200px;
+    border: 1px solid #ededed;
+    border-radius: 8px;
+    padding: 8px;
 }
 
 #removeLogoBtn {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background: #dc2626;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #FF5B41;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #removeLogoBtn:hover {
-  background: #b91c1c;
+    background: #e54a31;
 }
 
+/* ERROR MESSAGES */
 .error-message {
-  display: none;
-  color: #dc2626;
-  font-size: 14px;
-  margin-top: 6px;
+    display: none;
+    color: #FF5B41;
+    font-size: 14px;
+    margin-top: 6px;
 }
 
 .error-message.show {
-  display: block;
+    display: block;
 }
 
 .error-message.show::before {
-  content: "⚠ ";
-  margin-right: 4px;
+    content: "⚠ ";
+    margin-right: 4px;
 }
 
 input.error, textarea.error, select.error {
-  border-color: #dc2626;
-  background-color: #fef2f2;
+    border-color: #FF5B41;
+    background-color: #fff5f3;
 }
