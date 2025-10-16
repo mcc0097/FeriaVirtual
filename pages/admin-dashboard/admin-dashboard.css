@@ -1,5 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+* {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Aptos', system-ui, sans-serif;
+}
+
+body {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Aptos', system-ui, sans-serif;
+    font-weight: 400;
+}
+
+h1, h2, .card-title {
+    font-weight: 600;
+}
+
+/* NAVBAR */
 .navbar {
-    background-color: #706f6f;
+    background-color: #003594;
     padding: 20px;
     display: flex;
     align-items: center;
@@ -9,87 +25,89 @@
     position: relative;
 }
 
-    .login-status {
-        color: white;
-        font-size: 16px;
-        flex: 1;
-        flex-shrink: 0;
-    }
+.login-status {
+    color: white;
+    font-size: 16px;
+    flex: 1;
+    flex-shrink: 0;
+}
 
-    .logo {
-        color: white;
-        font-size: 20px;
-        font-weight: bold;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        pointer-events: none;
-    }
+.logo {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
 
-    .logout {
-        background-color: #d32f2f;
-        padding: 10px 20px;
-        color: white;
-        border: none;
-        cursor: pointer;
-        border-radius: 4px;
-        font-size: 14px;
-        transition: background-color 0.3s ease;
-        flex-shrink: 0;
-        z-index: 10;
-    }
-        
-        .logout:hover {
-            background-color: darkred;
-        }
+.logout {
+    background-color: #FF5B41;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0;
+    z-index: 10;
+}
+    
+.logout:hover {
+    background-color: #e54a31;
+}
 
+/* CONTAINER Y CARDS */
 .container {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            padding-top: 80px;
-        }
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-top: 80px;
+}
 
-    .card {
-        width: 200px;
-        height: 300px;
-        background-color: #f0f0f0;
-        border-radius: 8px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        align-content: center;
-        font-weight: bold;
-    }
+.card {
+    width: 200px;
+    height: 300px;
+    background-color: #ededed;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    align-content: center;
+    font-weight: bold;
+}
 
-    .card-placeholder {
-        width: 60%;
-        height: 20px;
-        background-color: #ccc;
-        margin-bottom: 10px;
-        border-radius: 4px;
-    }
+.card-placeholder {
+    width: 60%;
+    height: 20px;
+    background-color: #ccc;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
 
-    .card-title {
-        width: 80%;
-        height: 25px;
-        background-color: #ddd;
-        margin-bottom: 10px;
-        border-radius: 4px;
-    }
+.card-title {
+    width: 80%;
+    height: 25px;
+    background-color: #ddd;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
 
-    .card-footer {
-        width: 40%;
-        height: 15px;
-        background-color: #ddd;
-        border-radius: 4px;
-    }
+.card-footer {
+    width: 40%;
+    height: 15px;
+    background-color: #ddd;
+    border-radius: 4px;
+}
 
-/* Media query para móvil */
+/*MEDIA QUERIES */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -102,7 +120,7 @@
     }
 
     .logo {
-        position:static;
+        position: static;
         transform: none;
         order: -1;
         font-size: 24px;
@@ -113,5 +131,3 @@
         font-size: 16px;
     }
 }
-
-
