@@ -8,6 +8,5 @@ Trabajaremos haciendo merge sobre la rama development con nuestras ramas individ
 - Miguel Ángel Cadena
 - Pablo Peña
 - Jaime Martín
-- Mark
 - Miguel Contreras
-- Gonzalo
+- Gonzalo López
