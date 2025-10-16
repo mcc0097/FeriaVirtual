@@ -6,38 +6,37 @@ function getToken() {
 // Esta función decodifica el token JWT para obtener la información del usuario
 function decodeToken(token) {
     const payload = token.split('.')[1]; // JWT tiene 3 partes: Header, Payload, Signature
-    const decoded = JSON.parse(atob(payload));
-    // Decodificamos la parte Payload
+    const decoded = atob(payload); // Decodificamos la parte Payload
     return JSON.parse(decoded); // Convertimos el Payload de JSON a un objeto
 }
 
 // Verificamos si el usuario tiene sesión y si es admin
 function checkAuth() {
-    const token = getToken();
+    const token = getToken(); // Obtenemos el token
     if (!token) {
+        // Si no hay token, redirigimos al login
         window.location.href = 'login.html';
         return;
     }
 
     try {
-        const user = decodeToken(token);
+        const user = decodeToken(token); // Decodificamos el token
+        const userName = user.username || 'Usuario'; // Mostramos el nombre de usuario
+        document.getElementById('userName').textContent = userName; // Establecemos el nombre en el panel
 
-        // Mostrar el email del usuario
-        document.getElementById('userName').textContent = user.email || 'Usuario';
-
-        // Si estamos en la página de admin, comprobar el rol real
-        if (window.location.pathname.endsWith('admin.html')) {
-            if (user.role !== 'ADMIN') {
+        //Hace check si estamos en la página de admin
+        if (window.location.pathname === '/admin.html') {
+            // Si estamos en la página de admin
+            if (user.role !== 'admin') {
+                // Si el usuario no es admin, redirigimos a 403 (sin permisos)
                 window.location.href = '403.html';
             }
         }
-
     } catch (error) {
-        console.error('Token inválido', error);
+        // Si el token es inválido o no puede ser decodificado, redirigimos al login
         window.location.href = 'login.html';
     }
 }
-
 
 // Esta función cierra la sesión (eliminando el token)
 function logout() {
@@ -53,36 +52,18 @@ if (window.location.pathname === '/admin.html') {
 // Manejo del formulario de login
 document.getElementById('loginForm')?.addEventListener('submit', function (event) {
     event.preventDefault(); // Prevenimos el comportamiento por defecto del formulario
-
+    
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    // 🔐 Login real con tu backend
-    fetch('http://localhost:3000/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            email: username,   // el campo "username" de tu formulario en realidad es el email
-            password: password
-        })
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error al iniciar sesión');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // ✅ Guardar el token real devuelto por tu backend
-            localStorage.setItem('auth_token', data.access_token);
-            // 🔄 Redirigir al panel correspondiente
-            window.location.href = 'admin.html';
-        })
-        .catch(error => {
-            alert('Usuario o contraseña incorrectos');
-            console.error(error);
-        });
-
+    // Simulamos un login (esto se puede reemplazar por una validación real)
+    if (username === 'admin' && password === 'admin123') {
+        const token = btoa(JSON.stringify({ username: 'admin', role: 'admin' })); // Generamos un token, que codificamos a partir de un objeto y pasamos a texto
+        localStorage.setItem('auth_token', token); // Guardamos el token en localStorage
+        window.location.href = 'admin.html'; // Redirigimos al panel de admin
+    } else {
+        alert('Usuario o contraseña incorrectos');
+    }
 });
 
 // Event Listener para el botón de "Cerrar sesión"
