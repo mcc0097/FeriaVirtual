@@ -38,3 +38,10 @@ model users {
   dni       String?   @db.VarChar(9)
   roles     roles?    @relation(fields: [role_code], references: [code], onDelete: NoAction, onUpdate: NoAction, map: "fk_role_code")
 }
+
+model wings {
+  id        Int     @id(map: "pk_wing_id") @default(autoincrement())
+  computing String? @db.VarChar
+  leisure   String? @db.VarChar
+  commerce  String? @db.VarChar
+}

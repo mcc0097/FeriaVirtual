@@ -1,6 +1,3 @@
 docker-compose.dev.yml
 
-.env
 
-# Prisma generated client
-generated/
