@@ -5,7 +5,7 @@ import * as bcrypt from 'bcrypt';
 
 
 @Injectable()
-export class UserService {
+export class PlayerService {
     constructor(private prisma: PrismaService) {}
     
     async createPlayer(body: CreatePlayerDto) {
