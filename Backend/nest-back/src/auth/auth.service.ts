@@ -2,8 +2,9 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CreatePlayerDto } from 'src/player/dto/createPlayer.dto';
 import { PlayerService } from 'src/player/player.service';
 import * as bcrypt from 'bcrypt';
-import { PlayerEntity } from './strategy/player';
+import { PlayerEntity } from './player';
 import { JwtService } from '@nestjs/jwt';
+import { PayloadEntity } from './payload';
 
 @Injectable()
 export class AuthService {
@@ -11,7 +12,7 @@ export class AuthService {
 
     async validateUser(body: CreatePlayerDto){
         try {
-            const player = await this.playerService.findPlayer(body.name);
+            const player = await this.playerService.findPlayerForAuth(body.name);
             const matchResult = await bcrypt.compare(
                 body.password,
                 player?.password ?? ''
@@ -27,7 +28,7 @@ export class AuthService {
     }
 
     login(player: PlayerEntity) {
-        const payload = { playername: player.name, sub: player.id };
+        const payload: PayloadEntity = { playername: player.name, sub: player.id };
         return {
             access_token: this.jwtService.sign(payload),
         };

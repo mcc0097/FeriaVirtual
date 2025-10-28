@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/database/prisma.service';
 import { CreatePlayerDto } from './dto/createPlayer.dto';
 import * as bcrypt from 'bcrypt';   
@@ -32,11 +32,23 @@ export class PlayerService {
         }
     }
 
+    async findPlayerForAuth(name: string) {
+        try {
+            const player = await this.prisma.players.findFirst({where: { name }});
+            return player; // Includes password for authentication
+        } catch (error) {
+            if(error instanceof Error) {
+                throw new InternalServerErrorException(error.message);
+            }
+        }
+    }
+    // This method is used to get player data without password
     async findPlayer(name: string) {
         try {
             const player = await this.prisma.players.findFirst({where: { name }});
             if (player) {
-                return player;
+                const { password, ...playerWithoutPassword } = player;
+                return playerWithoutPassword;
             }
             return null;
         } catch (error) {
@@ -44,5 +56,23 @@ export class PlayerService {
                 throw new InternalServerErrorException(error.message);
             }
         }
+    }
+
+    async getPlayerById(id: number) {
+        try {
+            const player = await this.prisma.players.findFirst({where: { id }});
+            if(!player) {
+                throw new NotFoundException(`Player with ID ${id} not found`);
+            }
+            const { password, ...playerWithoutPassword } = player;
+            return playerWithoutPassword;
+        } catch (error) {
+            if(error instanceof NotFoundException) {
+                throw error;
+            }
+            if(error instanceof Error) {
+                throw new InternalServerErrorException(error.message);
+            }
+        }   
     }
 }
