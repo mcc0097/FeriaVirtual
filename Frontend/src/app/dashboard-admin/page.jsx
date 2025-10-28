@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import styles from './page.module.css';
+import styles from '@/styles/modules/admin-dashboard.module.css';
 // Import data
 import { kpiData, attendeesData, interactionsData, topStands } from '@/constants/mockData';
 // Import components
 import Navbar from '@/components/layout/Navbar/Navbar';
 import KPICard from '@/components/admin/KPICard/KPICard';
 // Import utilities
-import { getToken, decodeToken, logout } from '@/lib/utils/auth';
+import { getToken, decodeToken, logout } from '@/lib/utils/auth.dashboard-admin';
 
 /**
  * Admin Dashboard Page

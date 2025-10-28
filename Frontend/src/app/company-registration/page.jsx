@@ -12,7 +12,7 @@ import {
   validateWebsite,
   validateLogoFile,
   validateStandType
-} from '@/lib/validations/companyValidations';
+} from '@/validations/companyValidations';
 
 /**
  * Company Registration Page
