@@ -1,10 +1,10 @@
 # FeriaVirtual
 
-Aquí subiremos el código del proyecto de la Feria Virtual  
-Tendremos un repositorio monorepo para subir el contenido de backend y frontend en distintas carpetas.
-Trabajaremos haciendo merge sobre la rama development con nuestras ramas individuales de cada Sprint. 
+Here we'll upload the "FeriaVirtual" prject code.  
+We'll have a monorepo repository to upload the frontend and backend content in two different folders.
+The workFlow consist in making our own function branches, merging them into development and at the end when everything works, merging it to master branch. 
 
-# Participantes:
+# Participants:
 - Miguel Ángel Cadena
 - Pablo Peña
 - Jaime Martín
