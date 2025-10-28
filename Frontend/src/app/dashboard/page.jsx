@@ -58,7 +58,12 @@ export default function Dashboard() {
                 <div className={styles.dropdownItem}>Notifications</div>
                 <div className={styles.dropdownDivider} />
                 <div className={styles.dropdownItem}>Help</div>
-                <div className={styles.dropdownItem}>Admin Panel</div>
+                <div 
+                    className={styles.dropdownItem}
+                    onClick={() => window.open('/admin-dashboard', '_blank')}
+>
+  Admin Panel
+</div>
                 <div className={styles.dropdownDivider} />
                 <div 
                   className={styles.dropdownItem}
