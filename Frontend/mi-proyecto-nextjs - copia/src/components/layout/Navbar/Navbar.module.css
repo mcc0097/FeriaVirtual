@@ -1,0 +1,84 @@
+/* Navbar Component Styles */
+
+.navbar {
+    background-color: #003594;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.loginStatus {
+    color: white;
+    font-size: 16px;
+    flex: 1;
+    flex-shrink: 0;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: auto;
+    object-fit: contain;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+    opacity: 0.8;
+}
+
+.logout {
+    background-color: #FF5B41;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0;
+    z-index: 10;
+}
+
+.logout:hover {
+    background-color: #e54a31;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        position: relative;
+    }
+
+    .loginStatus {
+        font-size: 14px;
+    }
+
+    .logo {
+        position: static;
+        transform: none;
+        order: -1;
+        height: 50px;
+    }
+
+    .logout {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+}
