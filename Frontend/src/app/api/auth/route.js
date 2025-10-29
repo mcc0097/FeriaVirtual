@@ -5,7 +5,7 @@ import {
   generateToken, 
   comparePasswords, 
   validateEmail 
-} from '@/lib/utils/auth.dashboard-admin';
+} from '@/lib/utils/auth.utils';
 
 export async function POST(request) {
   try {

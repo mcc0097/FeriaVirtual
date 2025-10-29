@@ -60,7 +60,7 @@ export default function Dashboard() {
                 <div className={styles.dropdownItem}>Help</div>
                 <div 
                     className={styles.dropdownItem}
-                    onClick={() => window.open('/admin-dashboard', '_blank')}
+                    onClick={() => window.open('/dashboard-admin', '_blank')}
 >
   Admin Panel
 </div>
