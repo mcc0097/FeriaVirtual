@@ -43,6 +43,6 @@ model wings {
   id          Int         @id(map: "pk_wing_id") @default(autoincrement())
   name        String?     @db.VarChar
   description String?     @db.VarChar
-  max_peopl   Int?        @map("max peopl")
+  max_people  Int?        @map("max people")
   companies   companies[]
 }
