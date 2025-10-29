@@ -18,7 +18,7 @@ export class PlayerService {
                     password: hashedPassword,
                     surname: body.surname,
                     birthdate: body.birthdate,
-                    role_id: body.role_id,
+                    role_id: 4, // Default role: guest (you can change this)
                     phone: body.phone,
                     dni: body.dni
                 }
@@ -74,5 +74,31 @@ export class PlayerService {
                 throw new InternalServerErrorException(error.message);
             }
         }   
+    }
+
+    async updatePlayerRole(id: number, role_id: number) {
+        try {
+            // Verify player exists
+            const player = await this.prisma.players.findFirst({ where: { id } });
+            if (!player) {
+                throw new NotFoundException(`Player with ID ${id} not found`);
+            }
+
+            // Update the role
+            const updatedPlayer = await this.prisma.players.update({
+                where: { id },
+                data: { role_id }
+            });
+
+            const { password, ...result } = updatedPlayer;
+            return result;
+        } catch (error) {
+            if (error instanceof NotFoundException) {
+                throw error;
+            }
+            if (error instanceof Error) {
+                throw new InternalServerErrorException(error.message);
+            }
+        }
     }
 }

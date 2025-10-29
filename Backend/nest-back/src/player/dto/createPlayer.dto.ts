@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreatePlayerDto {
     @IsString()
@@ -10,17 +10,16 @@ export class CreatePlayerDto {
     password: string;
 
     @IsString()
-    surname: string;
+    @IsOptional()
+    surname?: string;
 
-    @IsString()
-    birthdate: Date;
+    @IsOptional()
+    birthdate?: Date;
 
-    @IsString()
-    role_id: number;
+    @IsOptional()
+    phone?: number;
 
+    @IsOptional()
     @IsString()
-    phone: number;
-
-    @IsString()
-    dni: string;
+    dni?: string;
 }

@@ -28,7 +28,11 @@ export class AuthService {
     }
 
     login(player: Omit<PlayerEntity, 'password'>) {
-        const payload: PayloadEntity = { playername: player.name, sub: player.id };
+        const payload: PayloadEntity = { 
+            playername: player.name, 
+            sub: player.id,
+            role_id: player.role_id
+        };
         return {
             access_token: this.jwtService.sign(payload),
         };
