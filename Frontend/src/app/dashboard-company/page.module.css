@@ -1,0 +1,290 @@
+/* ========================================
+   COMPANY DASHBOARD STYLES
+   Modern, clean design with KPI cards
+   ======================================== */
+
+/* Layout styles */
+.dashboardLayout {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+  font-family: 'Manrope', 'Aptos', sans-serif;
+}
+
+/* ========================================
+   NAVBAR STYLES
+   ======================================== */
+.navbar {
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  color: #003594;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.navItems {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.profileButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: #4a5568;
+  font-family: 'Manrope', 'Aptos', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.profileButton:hover {
+  background-color: #f1f5f9;
+}
+
+/* Dropdown menu styles */
+.dropdownContainer {
+  position: relative;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 0.5rem 0;
+  min-width: 200px;
+  margin-top: 0.5rem;
+  z-index: 100;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: #4a5568;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdownItem:hover {
+  background-color: #f1f5f9;
+  color: #003594;
+}
+
+.dropdownDivider {
+  height: 1px;
+  background-color: #e2e8f0;
+  margin: 0.5rem 0;
+}
+
+/* ========================================
+   MAIN CONTENT STYLES
+   ======================================== */
+.mainContent {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+}
+
+/* Header Section */
+.headerSection {
+  margin-bottom: 2rem;
+}
+
+.pageTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #003594;
+  margin-bottom: 0.5rem;
+}
+
+.pageSubtitle {
+  font-size: 1rem;
+  color: #64748b;
+  font-weight: 400;
+}
+
+/* ========================================
+   KPI CARDS GRID
+   ======================================== */
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+/* ========================================
+   QUICK ACTIONS SECTION
+   ======================================== */
+.quickActionsSection {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #003594;
+  margin-bottom: 1.5rem;
+}
+
+.actionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.actionCard {
+  background: linear-gradient(135deg, #003594 0%, #0056b3 100%);
+  border: none;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.actionCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 53, 148, 0.3);
+}
+
+.actionIcon {
+  font-size: 2rem;
+}
+
+.actionTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: 'Manrope', 'Aptos', sans-serif;
+}
+
+/* ========================================
+   LOADING STATE
+   ======================================== */
+.loadingContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+  gap: 1rem;
+}
+
+.loadingSpinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e2e8f0;
+  border-top: 4px solid #003594;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loadingContainer p {
+  color: #64748b;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+  }
+
+  .navItems {
+    gap: 1rem;
+  }
+
+  .mainContent {
+    padding: 1.5rem 1rem;
+  }
+
+  .pageTitle {
+    font-size: 1.5rem;
+  }
+
+  .pageSubtitle {
+    font-size: 0.9rem;
+  }
+
+  .kpiGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .actionsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .quickActionsSection {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+  }
+
+  .pageTitle {
+    font-size: 1.25rem;
+  }
+
+  .actionCard {
+    padding: 1.25rem;
+  }
+
+  .actionIcon {
+    font-size: 1.75rem;
+  }
+
+  .actionTitle {
+    font-size: 0.875rem;
+  }
+}

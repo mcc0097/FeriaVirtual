@@ -52,7 +52,7 @@ export default function LoginPage() {
           localStorage.setItem('user', JSON.stringify(response.data.user));
         }
         // Redirect user to dashboard
-        window.location.href = '/dashboard';
+        window.location.href = '/dashboard-company';
       }
     } catch (error) {
       setErrors([

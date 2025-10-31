@@ -16,6 +16,18 @@ export const kpiData = {
 };
 
 /**
+ * Company Dashboard KPIs data
+ * @type {Object}
+ */
+export const companyKpiData = {
+    liveAttendees: 247,
+    totalAttendees: 1834,
+    totalStands: 5,
+    jobApplications: 42,
+    standVisits: 3156
+};
+
+/**
  * Attendees data over time (for line chart)
  * @type {Array<{day: string, attendees: number}>}
  */
