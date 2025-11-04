@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model companies {
+  id          Int     @id(map: "pk_companie_id")
+  name        String? @db.VarChar
+  CIF         String? @db.VarChar(9)
+  description String? @db.VarChar
+  phone       Int?
+  email       String? @db.VarChar
+  website     String? @db.VarChar
+  wing_id     Int?
+  wings       wings?  @relation(fields: [wing_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_wing_id")
+}
+
+model roles {
+  id          Int       @id(map: "pk_role_id") @default(autoincrement())
+  name        String?   @db.VarChar
+  description String?   @db.VarChar
+  players     players[]
+}
+
+model wings {
+  id          Int         @id(map: "pk_wing_id") @default(autoincrement())
+  name        String?     @db.VarChar
+  description String?     @db.VarChar
+  max_people  Int?        @map("max people")
+  companies   companies[]
+}
+
+model players {
+  id        Int       @id(map: "pk_player_id") @default(autoincrement())
+  name      String?   @db.VarChar
+  surname   String?   @db.VarChar
+  birthdate DateTime? @db.Timestamp(6)
+  phone     Int?
+  dni       String?   @db.VarChar(9)
+  role_id   Int?
+  password  String?   @db.VarChar
+  roles     roles?    @relation(fields: [role_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_role_id")
+}

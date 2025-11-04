@@ -1,0 +1,167 @@
+{
+  "database": "FeriaVirtual",
+  "export_date": "2025-11-03",
+  "tables": {
+    "companies": [
+      {
+        "id": 1,
+        "name": "ibm",
+        "CIF": null,
+        "description": null,
+        "phone": null,
+        "email": null,
+        "website": "https://www.ibm.com/us-en",
+        "wing_id": 1
+      },
+      {
+        "id": 2,
+        "name": "cirque du soleil",
+        "CIF": null,
+        "description": null,
+        "phone": null,
+        "email": null,
+        "website": "https://www.cirquedusoleil.com/fr",
+        "wing_id": 2
+      },
+      {
+        "id": 3,
+        "name": "amazon",
+        "CIF": null,
+        "description": null,
+        "phone": null,
+        "email": null,
+        "website": "https://www.amazon.es/",
+        "wing_id": 3
+      }
+    ],
+    "players": [
+      {
+        "id": 1,
+        "name": "miguel",
+        "surname": "contreras",
+        "birthdate": null,
+        "phone": null,
+        "dni": null,
+        "role_id": 1,
+        "password": null
+      },
+      {
+        "id": 2,
+        "name": "pepito",
+        "surname": "pérez",
+        "birthdate": null,
+        "phone": null,
+        "dni": null,
+        "role_id": 2,
+        "password": "guagua1"
+      },
+      {
+        "id": 3,
+        "name": "agapito",
+        "surname": "disoussa",
+        "birthdate": null,
+        "phone": null,
+        "dni": null,
+        "role_id": 3,
+        "password": "carrovolador23"
+      }
+    ],
+    "roles": [
+      {
+        "id": 1,
+        "name": "admin",
+        "description": "can make any changes"
+      },
+      {
+        "id": 2,
+        "name": "employer",
+        "description": "makes job offers"
+      },
+      {
+        "id": 3,
+        "name": "visitor",
+        "description": "looks for job"
+      },
+      {
+        "id": 4,
+        "name": "guest",
+        "description": "just walk by"
+      }
+    ],
+    "wings": [
+      {
+        "id": 1,
+        "name": "computing",
+        "description": "data management companies",
+        "max_people": 50
+      },
+      {
+        "id": 2,
+        "name": "leisure",
+        "description": "entertainment and free time companies",
+        "max_people": 50
+      },
+      {
+        "id": 3,
+        "name": "commerce",
+        "description": "marketing and sales companies",
+        "max_people": 50
+      }
+    ]
+  },
+  "relationships": {
+    "players_roles": "players.role_id -> roles.id",
+    "companies_wings": "companies.wing_id -> wings.id"
+  },
+  "unity_ready_data": {
+    "companies_with_wings": [
+      {
+        "company_id": 1,
+        "company_name": "ibm",
+        "website": "https://www.ibm.com/us-en",
+        "wing_name": "computing",
+        "wing_description": "data management companies",
+        "max_people": 50
+      },
+      {
+        "company_id": 2,
+        "company_name": "cirque du soleil",
+        "website": "https://www.cirquedusoleil.com/fr",
+        "wing_name": "leisure",
+        "wing_description": "entertainment and free time companies",
+        "max_people": 50
+      },
+      {
+        "company_id": 3,
+        "company_name": "amazon",
+        "website": "https://www.amazon.es/",
+        "wing_name": "commerce",
+        "wing_description": "marketing and sales companies",
+        "max_people": 50
+      }
+    ],
+    "players_with_roles": [
+      {
+        "player_id": 1,
+        "full_name": "miguel contreras",
+        "role_name": "admin",
+        "role_description": "can make any changes",
+        "has_password": false
+      },
+      {
+        "player_id": 2,
+        "full_name": "pepito pérez",
+        "role_name": "employer",
+        "role_description": "makes job offers",
+        "has_password": true
+      },
+      {
+        "player_id": 3,
+        "full_name": "agapito disoussa",
+        "role_name": "visitor",
+        "role_description": "looks for job",
+        "has_password": true
+      }
+    ]
+  }
+}
