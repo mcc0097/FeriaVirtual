@@ -7,8 +7,6 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JWT_SECRET } from '../../constants/jwt-key';
 import { JwtStrategy } from './strategy/jwt.strategy';
-
-
 @Module({
   imports: [
     PlayerModule,
