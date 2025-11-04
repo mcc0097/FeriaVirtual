@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Host=localhost;Database=feriavirtual;Username=postgres;Password=YOUR_PASSWORD"
+  }
+}

@@ -1,0 +1,54 @@
+@startuml FeriaVirtual_VisitanteInvitadoExpositorAdmin
+
+title Diagrama de Casos de Uso - Feria Virtual (Visitante, Invitado, Expositor, Administrador)
+
+actor Visitante
+actor Invitado
+actor Expositor
+actor Administrador
+
+rectangle "Feria Virtual" {
+  
+  ' Casos de uso comunes
+  usecase "Explorar feria" as UC1
+  usecase "Ver expositores" as UC2
+  usecase "Ver productos" as UC3
+
+  ' Casos de uso de Invitado
+  usecase "Chat con expositor" as UC4
+  usecase "Agendar reunión" as UC5
+
+  ' Casos de uso de Expositor
+  usecase "Gestionar productos" as UC6
+  usecase "Responder chat" as UC7
+  usecase "Confirmar reuniones" as UC8
+
+  ' Casos de uso de Administrador
+  usecase "Gestionar usuarios" as UC9
+  usecase "Configurar feria" as UC10
+  usecase "Generar reportes" as UC11
+}
+
+' Relaciones Visitante
+Visitante --> UC1
+Visitante --> UC2
+Visitante --> UC3
+
+' Relaciones Invitado
+Invitado --> UC1
+Invitado --> UC2
+Invitado --> UC3
+Invitado --> UC4
+Invitado --> UC5
+
+' Relaciones Expositor
+Expositor --> UC6
+Expositor --> UC7
+Expositor --> UC8
+
+' Relaciones Administrador
+Administrador --> UC9
+Administrador --> UC10
+Administrador --> UC11
+
+@enduml
