@@ -12,7 +12,7 @@ export class PlayerService {
         try{
             // Here I used salt rounds directly instead of genSalt()
             const hashedPassword = await bcrypt.hash(body.password, 10);
-            const newPlayer = await this.prisma.players.create({
+            const newPlayer = await this.prisma.player.create({
                 data: {
                     name: body.name,
                     password: hashedPassword,
@@ -34,7 +34,7 @@ export class PlayerService {
 
     async findPlayerForAuth(name: string) {
         try {
-            const player = await this.prisma.players.findFirst({where: { name }});
+            const player = await this.prisma.player.findFirst({where: { name }});
             return player; // Includes password for authentication
         } catch (error) {
             if(error instanceof Error) {
@@ -45,7 +45,7 @@ export class PlayerService {
     // This method is used to get player data without password
     async findPlayer(name: string) {
         try {
-            const player = await this.prisma.players.findFirst({where: { name }});
+            const player = await this.prisma.player.findFirst({where: { name }});
             if (player) {
                 const { password, ...playerWithoutPassword } = player;
                 return playerWithoutPassword;
@@ -60,7 +60,7 @@ export class PlayerService {
 
     async getPlayerById(id: number) {
         try {
-            const player = await this.prisma.players.findFirst({where: { id }});
+            const player = await this.prisma.player.findFirst({where: { id }});
             if(!player) {
                 throw new NotFoundException(`Player with ID ${id} not found`);
             }
@@ -79,13 +79,13 @@ export class PlayerService {
     async updatePlayerRole(id: number, role_id: number) {
         try {
             // Verify player exists
-            const player = await this.prisma.players.findFirst({ where: { id } });
+            const player = await this.prisma.player.findFirst({ where: { id } });
             if (!player) {
                 throw new NotFoundException(`Player with ID ${id} not found`);
             }
 
             // Update the role
-            const updatedPlayer = await this.prisma.players.update({
+            const updatedPlayer = await this.prisma.player.update({
                 where: { id },
                 data: { role_id }
             });
