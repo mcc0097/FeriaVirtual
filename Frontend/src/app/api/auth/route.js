@@ -1,11 +1,11 @@
 //login route for user authentication
 import { NextResponse } from 'next/server';
 import { UserService } from '@/lib/db/user.service';
-import { 
-  generateToken, 
-  comparePasswords, 
-  validateEmail 
-} from '@/lib/utils/auth.utils';
+import {
+  generateToken,
+  comparePasswords,
+  validateEmail
+} from '@/lib/utils/auth.js';
 
 export async function POST(request) {
   try {

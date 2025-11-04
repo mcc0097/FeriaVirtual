@@ -1,0 +1,172 @@
+/* Cookies Policy Page Styles */
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 120px 24px 40px;
+    min-height: calc(100vh - 200px);
+}
+
+.title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #003594;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.lastUpdate {
+    font-size: 14px;
+    color: #999;
+    text-align: center;
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+.content {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #ededed;
+}
+
+.section {
+    margin-bottom: 32px;
+}
+
+.section:last-child {
+    margin-bottom: 0;
+}
+
+.sectionTitle {
+    font-size: 22px;
+    font-weight: 600;
+    color: #003594;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.subsectionTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: #003594;
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+.text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+.text a {
+    color: #003594;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.text a:hover {
+    color: #0051c9;
+}
+
+.list {
+    margin: 16px 0;
+    padding-left: 24px;
+}
+
+.list li {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.list li strong {
+    color: #003594;
+    font-weight: 600;
+}
+
+/* Cookie Table */
+.cookieTable {
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+.cookieTable table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.cookieTable thead {
+    background: #003594;
+    color: white;
+}
+
+.cookieTable th {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.cookieTable td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 14px;
+    color: #333;
+}
+
+.cookieTable tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.cookieTable tbody tr:hover {
+    background: #f0f0f0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 100px 16px 24px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .content {
+        padding: 24px 20px;
+    }
+
+    .sectionTitle {
+        font-size: 20px;
+    }
+
+    .subsectionTitle {
+        font-size: 17px;
+    }
+
+    .text,
+    .list li {
+        font-size: 15px;
+    }
+
+    .cookieTable {
+        font-size: 13px;
+    }
+
+    .cookieTable th,
+    .cookieTable td {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+}
