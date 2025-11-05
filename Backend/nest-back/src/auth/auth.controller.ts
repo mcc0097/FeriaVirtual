@@ -18,14 +18,14 @@ export class AuthController {
 
     @UseGuards(LocalAuthGuard)
     @Post('login')
-    login(@Request() req: { player: Omit<PlayerEntity, 'password'> }) {
-        return this.authService.login(req.player);
+    login(@Request() req: { user: Omit<PlayerEntity, 'password'> }) {
+        return this.authService.login(req.user);
     }
 
     @UseGuards(JwtAuthGuard)
     @Get('profile')
-    async getProfile(@Request() req: { player: { playerId: number; playername: string } }) {
-        return await this.playerService.getPlayerById(req.player.playerId);
+    async getProfile(@Request() req: { user: { playerId: number; playername: string; role_id: number } }) {
+        return await this.playerService.getPlayerById(req.user.playerId);
     }
 
     @UseGuards(JwtAuthGuard, AdminGuard)
