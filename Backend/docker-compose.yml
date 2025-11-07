@@ -1,8 +1,8 @@
 version: '3.8' 
 # Each service defined here represents a separate container
-#postgres is used for relational database storage
-#redis is used for caching and message brokering
-#minio is used for object storage like images and videos
+# postgres is used for relational database storage
+# redis is used for caching and message brokering
+# minio is used for object storage like images and videos
 
 services: 
   postgres: 
