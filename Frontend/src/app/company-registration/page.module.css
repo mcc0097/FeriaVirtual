@@ -14,7 +14,7 @@
   text-align: center;
 }
 
-/* SUCCESS OVERLAY (fondo oscuro) */
+/* SUCCESS OVERLAY (background overlay) */
 .successOverlay {
   position: fixed;
   top: 0;
@@ -175,8 +175,7 @@
 /* INPUTS */
 .input,
 .textarea,
-.select,
-.fileInput {
+.select {
   width: 100%;
   padding: 12px;
   border: 1px solid #ededed;
@@ -188,8 +187,7 @@
 
 .input:focus,
 .textarea:focus,
-.select:focus,
-.fileInput:focus {
+.select:focus {
   outline: none;
   border-color: #003594;
   box-shadow: 0 0 0 3px rgba(0, 53, 148, 0.1);
@@ -198,49 +196,6 @@
 .textarea {
   resize: vertical;
   min-height: 120px;
-}
-
-/* HELPER TEXT */
-.helperText {
-  display: block;
-  margin-top: 6px;
-  font-size: 13px;
-  color: #666;
-}
-
-/* LOGO PREVIEW */
-.logoPreview {
-  margin-top: 16px;
-  padding: 16px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  border: 1px solid #ededed;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.logoImage {
-  max-width: 150px;
-  max-height: 150px;
-  border-radius: 8px;
-  object-fit: contain;
-}
-
-.removeLogoBtn {
-  background: #FF5B41;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 16px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
-  transition: background-color 0.2s ease;
-}
-
-.removeLogoBtn:hover {
-  background: #e54a31;
 }
 
 /* ERROR MESSAGES */

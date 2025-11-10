@@ -9,7 +9,6 @@ import {
   validateTaxId,
   validateDescription,
   validateWebsite,
-  validateLogoFile,
   validateStandType
 } from '@/validations/companyValidations';
 import Footer from '@/components/layout/Footer/Footer';
@@ -19,10 +18,6 @@ import Footer from '@/components/layout/Footer/Footer';
  * Form for companies to create their virtual fair profile
  */
 export default function CompanyRegistration() {
-
-  // Logo state
-  const [logoPreviewUrl, setLogoPreviewUrl] = useState('');
-  const [selectedFile, setSelectedFile] = useState(null);
 
   // Error state
   const [errors, setErrors] = useState({});
@@ -38,43 +33,9 @@ export default function CompanyRegistration() {
   }, []);
 
   /**
-   * Handles logo file selection and preview
-   * @param {Event} event - File input change event
-   */
-  const handleLogoChange = (event) => {
-    const file = event.target.files[0];
-
-    if (file) {
-      setSelectedFile(file);
-
-      // Create preview URL
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setLogoPreviewUrl(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  /**
-   * Removes selected logo and clears preview
-   */
-  const handleRemoveLogo = () => {
-    setLogoPreviewUrl('');
-    setSelectedFile(null);
-
-    const logoInput = document.getElementById('logoFile');
-    if (logoInput) {
-      logoInput.value = '';
-    }
-  };
-
-  /**
    * Clears form and resets all states
    */
   const handleClearForm = () => {
-    setLogoPreviewUrl('');
-    setSelectedFile(null);
     setErrors({});
   };
 
@@ -96,7 +57,6 @@ export default function CompanyRegistration() {
     const taxId = form.taxId.value;
     const companyDescription = form.companyDescription.value;
     const website = form.website.value;
-    const logoFile = form.logoFile.files[0];
     const standType = form.standType.value;
 
     // Validate all fields
@@ -107,7 +67,6 @@ export default function CompanyRegistration() {
       { field: 'taxId', validator: () => validateTaxId(taxId), focusField: form.taxId },
       { field: 'companyDescription', validator: () => validateDescription(companyDescription), focusField: form.companyDescription },
       { field: 'website', validator: () => validateWebsite(website), focusField: form.website },
-      { field: 'logoFile', validator: () => validateLogoFile(logoFile), focusField: form.logoFile },
       { field: 'standType', validator: () => validateStandType(standType), focusField: form.standType }
     ];
 
@@ -132,7 +91,6 @@ export default function CompanyRegistration() {
       taxId: taxId.trim().toUpperCase(),
       companyDescription: companyDescription.trim(),
       website: website.trim(),
-      logoFileName: logoFile.name,
       standType: standType,
       createdAt: new Date().toISOString()
     };
@@ -146,8 +104,6 @@ export default function CompanyRegistration() {
     // Clear form after delay
     setTimeout(() => {
       form.reset();
-      setLogoPreviewUrl('');
-      setSelectedFile(null);
       setShowSuccess(false);
     }, 2000);
   };
@@ -279,41 +235,6 @@ export default function CompanyRegistration() {
               />
               {errors.website && (
                 <span className={styles.error}>{errors.website}</span>
-              )}
-            </div>
-
-            {/* Logo */}
-            <div className={styles.formGroup}>
-              <label htmlFor="logoFile" className={styles.label}>
-                Logo
-              </label>
-              <input
-                type="file"
-                id="logoFile"
-                name="logoFile"
-                accept="image/*"
-                onChange={handleLogoChange}
-                className={styles.fileInput}
-              />
-              <p className={styles.helperText}>
-                Select an image (JPG, PNG, etc.)
-              </p>
-              {errors.logoFile && (
-                <span className={styles.error}>{errors.logoFile}</span>
-              )}
-
-              {/* Logo Preview */}
-              {logoPreviewUrl && (
-                <div className={styles.logoPreview}>
-                  <img src={logoPreviewUrl} alt="Logo preview" className={styles.logoImage} />
-                  <button
-                    type="button"
-                    onClick={handleRemoveLogo}
-                    className={styles.removeLogoBtn}
-                  >
-                    Remove
-                  </button>
-                </div>
               )}
             </div>
 
