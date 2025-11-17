@@ -212,9 +212,17 @@
   color: #4a5568;
   font-size: 0.875rem;
   font-weight: 500;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+/* Dimension info text */
+.dimensionInfo {
+  color: #718096;
+  font-size: 13px;
+  margin-bottom: 12px;
+  font-weight: 500;
 }
 
 /* Hidden file input */
@@ -304,6 +312,31 @@
   background-color: #b91c1c;
 }
 
+/* Error message for image validation */
+.errorMessage {
+  background-color: #fee;
+  color: #c53030;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border-left: 4px solid #c53030;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Empty state for images */
 .emptyState {
   color: #718096;
@@ -318,11 +351,11 @@
   .imagesGrid {
     grid-template-columns: 1fr;
   }
-  
+
   .imageContainer {
     padding: 1rem;
   }
-  
+
   .logoImage,
   .bannerImage,
   .cartelImage {

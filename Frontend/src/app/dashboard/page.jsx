@@ -21,6 +21,11 @@ export default function Dashboard() {
   const [bannerFile, setBannerFile] = useState(null);
   const [cartelFile, setCartelFile] = useState(null);
 
+  // States for errors
+  const [logoError, setLogoError] = useState('');
+  const [bannerError, setBannerError] = useState('');
+  const [cartelError, setCartelError] = useState('');
+
   useEffect(() => {
     // Verify if the user is authenticated
     const token = localStorage.getItem('token');
@@ -55,16 +60,59 @@ export default function Dashboard() {
   };
 
   /**
-   * Handle logo file selection
+   * Validate image dimensions (EXACT match required)
+   * @param {File} file - Image file
+   * @param {number} exactWidth - Required width in pixels
+   * @param {number} exactHeight - Required height in pixels
+   * @returns {Promise} - Resolves with {valid: boolean, width: number, height: number}
    */
-  const handleLogoChange = (event) => {
+  const validateImageDimensions = (file, exactWidth, exactHeight) => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      const url = URL.createObjectURL(file);
+
+      img.onload = () => {
+        URL.revokeObjectURL(url);
+        const valid = img.width === exactWidth && img.height === exactHeight;
+        resolve({
+          valid,
+          width: img.width,
+          height: img.height
+        });
+      };
+
+      img.onerror = () => {
+        URL.revokeObjectURL(url);
+        resolve({ valid: false, width: 0, height: 0 });
+      };
+
+      img.src = url;
+    });
+  };
+
+  /**
+   * Handle logo file selection with EXACT dimension validation
+   */
+  const handleLogoChange = async (event) => {
     const file = event.target.files[0];
+    setLogoError('');
+
     if (file) {
+      // Validate dimensions (EXACT 1000x1000)
+      const validation = await validateImageDimensions(file, 1000, 1000);
+
+      if (!validation.valid) {
+        setLogoError(
+          `The image must be 1000 x 1000 pixels in size. Your image is ${validation.width}x${validation.height}px`
+        );
+        event.target.value = ''; // Clear input
+        return;
+      }
+
       setLogoFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
         setLogoPreview(reader.result);
-        // Save to localStorage
         localStorage.setItem('companyLogo', reader.result);
       };
       reader.readAsDataURL(file);
@@ -72,11 +120,24 @@ export default function Dashboard() {
   };
 
   /**
-   * Handle banner file selection
+   * Handle banner file selection with EXACT dimension validation
    */
-  const handleBannerChange = (event) => {
+  const handleBannerChange = async (event) => {
     const file = event.target.files[0];
+    setBannerError('');
+
     if (file) {
+      // Validate dimensions (EXACT 1400x700)
+      const validation = await validateImageDimensions(file, 1400, 700);
+
+      if (!validation.valid) {
+        setBannerError(
+          `The image must be 700 x 1400 pixels in size. Your image is ${validation.width}x${validation.height}px`
+        );
+        event.target.value = ''; // Clear input
+        return;
+      }
+
       setBannerFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -88,11 +149,24 @@ export default function Dashboard() {
   };
 
   /**
-   * Handle poster file selection
+   * Handle poster file selection with EXACT dimension validation
    */
-  const handleCartelChange = (event) => {
+  const handleCartelChange = async (event) => {
     const file = event.target.files[0];
+    setCartelError('');
+
     if (file) {
+      // Validate dimensions (EXACT 1200x400)
+      const validation = await validateImageDimensions(file, 1200, 400);
+
+      if (!validation.valid) {
+        setCartelError(
+          `The image must be 400 x 1200 pixels in size. Your image is ${validation.width}x${validation.height}px`
+        );
+        event.target.value = ''; // Clear input
+        return;
+      }
+
       setCartelFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -109,6 +183,7 @@ export default function Dashboard() {
   const handleRemoveLogo = () => {
     setLogoPreview('');
     setLogoFile(null);
+    setLogoError('');
     localStorage.removeItem('companyLogo');
     const input = document.getElementById('logoInput');
     if (input) input.value = '';
@@ -120,6 +195,7 @@ export default function Dashboard() {
   const handleRemoveBanner = () => {
     setBannerPreview('');
     setBannerFile(null);
+    setBannerError('');
     localStorage.removeItem('companyBanner');
     const input = document.getElementById('bannerInput');
     if (input) input.value = '';
@@ -131,6 +207,7 @@ export default function Dashboard() {
   const handleRemoveCartel = () => {
     setCartelPreview('');
     setCartelFile(null);
+    setCartelError('');
     localStorage.removeItem('companyCartel');
     const input = document.getElementById('cartelInput');
     if (input) input.value = '';
@@ -146,7 +223,7 @@ export default function Dashboard() {
         <span className={styles.logo}>Virtual Fair Dashboard</span>
         <div className={styles.navItems}>
           <div className={styles.dropdownContainer}>
-            <button
+            <button 
               className={styles.profileButton}
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             >
@@ -159,14 +236,14 @@ export default function Dashboard() {
                 <div className={styles.dropdownItem}>Notifications</div>
                 <div className={styles.dropdownDivider} />
                 <div className={styles.dropdownItem}>Help</div>
-                <div
+                <div 
                   className={styles.dropdownItem}
                   onClick={() => window.open('/dashboard-admin', '_blank')}
                 >
                   Admin Panel
                 </div>
                 <div className={styles.dropdownDivider} />
-                <div
+                <div 
                   className={styles.dropdownItem}
                   onClick={handleLogout}
                 >
@@ -177,12 +254,12 @@ export default function Dashboard() {
           </div>
         </div>
       </nav>
-
+      
       <main className={styles.mainContent}>
         <div className={styles.welcomeCard}>
           <h1 className={styles.welcomeTitle}>¡Bienvenido {user.username || user.email}!</h1>
           <p>Has iniciado sesión correctamente en el panel de control.</p>
-          <button
+          <button 
             onClick={handleLogout}
             className={styles.logoutButton}
           >
@@ -208,7 +285,11 @@ export default function Dashboard() {
               <label htmlFor="logoInput" className={styles.uploadButton}>
                 {logoPreview ? 'Cambiar Logo' : 'Subir Logo'}
               </label>
-
+              
+              {logoError && (
+                <div className={styles.errorMessage}>{logoError}</div>
+              )}
+              
               {logoPreview && (
                 <div className={styles.imagePreview}>
                   <img src={logoPreview} alt="Logo preview" className={styles.logoImage} />
@@ -236,7 +317,11 @@ export default function Dashboard() {
               <label htmlFor="bannerInput" className={styles.uploadButton}>
                 {bannerPreview ? 'Cambiar Banner' : 'Subir Banner'}
               </label>
-
+              
+              {bannerError && (
+                <div className={styles.errorMessage}>{bannerError}</div>
+              )}
+              
               {bannerPreview && (
                 <div className={styles.imagePreview}>
                   <img src={bannerPreview} alt="Banner preview" className={styles.bannerImage} />
@@ -264,7 +349,11 @@ export default function Dashboard() {
               <label htmlFor="cartelInput" className={styles.uploadButton}>
                 {cartelPreview ? 'Cambiar Cartel' : 'Subir Cartel'}
               </label>
-
+              
+              {cartelError && (
+                <div className={styles.errorMessage}>{cartelError}</div>
+              )}
+              
               {cartelPreview && (
                 <div className={styles.imagePreview}>
                   <img src={cartelPreview} alt="Cartel preview" className={styles.cartelImage} />
