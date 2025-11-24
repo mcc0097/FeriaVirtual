@@ -23,6 +23,12 @@ export class AuthController {
     return this.authService.login(user);
   }
 
+    @Post('register')
+  async register(@Body() body: { email: string; password: string; role?: string }) {
+    return this.authService.register(body);
+  }
+
+
   // 👇 ESTE ES EL ENDPOINT QUE BUSCAMOS
   @Get('me')
   @UseGuards(AuthGuard('jwt'))
