@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* Colores de la feria */
+  --color-navy: #003594;
+  --color-orange: #FF5B41;
+  --color-grey: #EDEDED;
+  --color-black: #1E1E1E;
+  --color-white: #FFFFFF;
+
+  /* Fuente */
+  --font-sans: var(--font-manrope);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: transparent;
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ------------------------------------------------------ */
+/* ⭐ ANIMACIÓN PARA EL CARRUSEL DE LOGOS (SCROLL INFINITO) */
+/* ------------------------------------------------------ */
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
