@@ -1,0 +1,778 @@
+{
+	"info": {
+		"_postman_id": "59fec776-ba74-4193-b42d-bff717296cb0",
+		"name": "Companies API",
+		"description": "API collection for managing companies with CRUD operations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49558357",
+		"_collection_link": "https://mcc0097-8325803.postman.co/workspace/Miguel-Contreras's-Team's-Works~461b3cdb-1ac7-49f4-8d88-4c78d1445c57/collection/49558357-59fec776-ba74-4193-b42d-bff717296cb0?action=share&source=collection_link&creator=49558357"
+	},
+	"item": [
+		{
+			"name": "Get All Companies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test: Status code is 200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Test: Response time is acceptable",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"// Test: Response is JSON",
+							"pm.test(\"Response is JSON\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});",
+							"",
+							"// Test: Response body is an array",
+							"pm.test(\"Response body is an array\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.be.an('array');",
+							"});",
+							"",
+							"// Test: Array contains company objects with required fields",
+							"pm.test(\"Companies have required fields\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    ",
+							"    if (jsonData.length > 0) {",
+							"        jsonData.forEach(function(company) {",
+							"            pm.expect(company).to.have.property('id');",
+							"            pm.expect(company).to.have.property('name');",
+							"            pm.expect(company.id).to.be.a('number');",
+							"            pm.expect(company.name).to.be.a('string');",
+							"        });",
+							"    }",
+							"});",
+							"",
+							"// Test: Validate data types for company properties",
+							"pm.test(\"Company properties have correct data types\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    ",
+							"    if (jsonData.length > 0) {",
+							"        const company = jsonData[0];",
+							"        ",
+							"        if (company.hasOwnProperty('email')) {",
+							"            pm.expect(company.email).to.be.a('string');",
+							"        }",
+							"        if (company.hasOwnProperty('phone')) {",
+							"            pm.expect(company.phone).to.be.a('string');",
+							"        }",
+							"        if (company.hasOwnProperty('address')) {",
+							"            pm.expect(company.address).to.be.a('string');",
+							"        }",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/companies",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"companies"
+					]
+				},
+				"description": "Fetch all companies"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Company",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test: Status code is 201 Created",
+							"pm.test(\"Status code is 201 Created\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"// Test: Response time is acceptable",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"// Test: Response is JSON",
+							"pm.test(\"Response is JSON\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});",
+							"",
+							"// Test: Response contains created company object",
+							"pm.test(\"Response contains created company object\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.be.an('object');",
+							"    pm.expect(jsonData).to.have.property('id');",
+							"    pm.expect(jsonData).to.have.property('name');",
+							"});",
+							"",
+							"// Test: Created company has correct data types",
+							"pm.test(\"Created company has correct data types\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    ",
+							"    pm.expect(jsonData.id).to.be.a('number');",
+							"    pm.expect(jsonData.name).to.be.a('string');",
+							"    ",
+							"    if (jsonData.hasOwnProperty('email')) {",
+							"        pm.expect(jsonData.email).to.be.a('string');",
+							"    }",
+							"    if (jsonData.hasOwnProperty('phone')) {",
+							"        pm.expect(jsonData.phone).to.be.a('string');",
+							"    }",
+							"    if (jsonData.hasOwnProperty('address')) {",
+							"        pm.expect(jsonData.address).to.be.a('string');",
+							"    }",
+							"});",
+							"",
+							"// Test: Save company ID for subsequent requests",
+							"pm.test(\"Save company ID to collection variable\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    ",
+							"    if (jsonData.id) {",
+							"        pm.collectionVariables.set(\"companyId\", jsonData.id);",
+							"        console.log(\"Saved company ID: \" + jsonData.id);",
+							"    }",
+							"});",
+							"",
+							"// Test: Validate required fields are present",
+							"pm.test(\"Required fields are present in response\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('id');",
+							"    pm.expect(jsonData).to.have.property('name');",
+							"    pm.expect(jsonData.name).to.not.be.empty;",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Example Company\",\n  \"email\": \"contact@example.com\",\n  \"phone\": \"+1234567890\",\n  \"address\": \"123 Main St\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/companies",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"companies"
+					]
+				},
+				"description": "Create a new company"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Company by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test: Status code is 200 or 404",
+							"pm.test(\"Status code is 200 or 404\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);",
+							"});",
+							"",
+							"// Test: Response time is acceptable",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"// Test: Response is JSON",
+							"pm.test(\"Response is JSON\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});",
+							"",
+							"// Test: If 200, response contains single company object",
+							"if (pm.response.code === 200) {",
+							"    pm.test(\"Response contains single company object\", function () {",
+							"        const jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.be.an('object');",
+							"        pm.expect(jsonData).to.not.be.an('array');",
+							"    });",
+							"",
+							"    pm.test(\"Company has required fields\", function () {",
+							"        const jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.have.property('id');",
+							"        pm.expect(jsonData).to.have.property('name');",
+							"    });",
+							"",
+							"    pm.test(\"Company properties have correct data types\", function () {",
+							"        const jsonData = pm.response.json();",
+							"        ",
+							"        pm.expect(jsonData.id).to.be.a('number');",
+							"        pm.expect(jsonData.name).to.be.a('string');",
+							"        ",
+							"        if (jsonData.hasOwnProperty('email')) {",
+							"            pm.expect(jsonData.email).to.be.a('string');",
+							"        }",
+							"        if (jsonData.hasOwnProperty('phone')) {",
+							"            pm.expect(jsonData.phone).to.be.a('string');",
+							"        }",
+							"        if (jsonData.hasOwnProperty('address')) {",
+							"            pm.expect(jsonData.address).to.be.a('string');",
+							"        }",
+							"    });",
+							"",
+							"    pm.test(\"Company ID matches requested ID\", function () {",
+							"        const jsonData = pm.response.json();",
+							"        const requestedId = pm.request.url.getPath().split('/').pop();",
+							"        pm.expect(jsonData.id.toString()).to.equal(requestedId);",
+							"    });",
+							"}",
+							"",
+							"// Test: If 404, validate error response",
+							"if (pm.response.code === 404) {",
+							"    pm.test(\"404 response contains error message\", function () {",
+							"        const jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.have.property('error').or.to.have.property('message');",
+							"    });",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/companies/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"companies",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id"
+						}
+					]
+				},
+				"description": "Fetch a single company by ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Company",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test: Status code is 200 or 404",
+							"pm.test(\"Status code is 200 or 404\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);",
+							"});",
+							"",
+							"// Test: Response time is acceptable",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"// Test: Response is JSON",
+							"pm.test(\"Response is JSON\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});",
+							"",
+							"// Test: If 200, response contains updated company object",
+							"if (pm.response.code === 200) {",
+							"    pm.test(\"Response contains updated company object\", function () {",
+							"        const jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.be.an('object');",
+							"        pm.expect(jsonData).to.have.property('id');",
+							"        pm.expect(jsonData).to.have.property('name');",
+							"    });",
+							"",
+							"    pm.test(\"Updated company has correct data types\", function () {",
+							"        const jsonData = pm.response.json();",
+							"        ",
+							"        pm.expect(jsonData.id).to.be.a('number');",
+							"        pm.expect(jsonData.name).to.be.a('string');",
+							"        ",
+							"        if (jsonData.hasOwnProperty('email')) {",
+							"            pm.expect(jsonData.email).to.be.a('string');",
+							"        }",
+							"        if (jsonData.hasOwnProperty('phone')) {",
+							"            pm.expect(jsonData.phone).to.be.a('string');",
+							"        }",
+							"        if (jsonData.hasOwnProperty('address')) {",
+							"            pm.expect(jsonData.address).to.be.a('string');",
+							"        }",
+							"    });",
+							"",
+							"    pm.test(\"Company ID remains unchanged\", function () {",
+							"        const jsonData = pm.response.json();",
+							"        const requestedId = pm.request.url.getPath().split('/').pop();",
+							"        pm.expect(jsonData.id.toString()).to.equal(requestedId);",
+							"    });",
+							"",
+							"    pm.test(\"Updated fields reflect changes\", function () {",
+							"        const jsonData = pm.response.json();",
+							"        const requestBody = JSON.parse(pm.request.body.raw);",
+							"        ",
+							"        // Verify that fields sent in request are present in response",
+							"        Object.keys(requestBody).forEach(function(key) {",
+							"            pm.expect(jsonData).to.have.property(key);",
+							"        });",
+							"    });",
+							"}",
+							"",
+							"// Test: If 404, validate error response",
+							"if (pm.response.code === 404) {",
+							"    pm.test(\"404 response contains error message\", function () {",
+							"        const jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.have.property('error').or.to.have.property('message');",
+							"    });",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Example Company\",\n  \"email\": \"contact@example.com\",\n  \"phone\": \"+1234567890\",\n  \"address\": \"123 Main St\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/companies/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"companies",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id"
+						}
+					]
+				},
+				"description": "Update a company by ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Company",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test: Status code is 200, 204, or 404",
+							"pm.test(\"Status code is 200, 204, or 404\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 204, 404]);",
+							"});",
+							"",
+							"// Test: Response time is acceptable",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"// Test: If 200, validate success response",
+							"if (pm.response.code === 200) {",
+							"    pm.test(\"Response is JSON\", function () {",
+							"        pm.response.to.have.header(\"Content-Type\");",
+							"        pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"    });",
+							"",
+							"    pm.test(\"200 response contains success message or deleted object\", function () {",
+							"        const jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.be.an('object');",
+							"        // Response might contain success message or the deleted company object",
+							"    });",
+							"}",
+							"",
+							"// Test: If 204, no content expected",
+							"if (pm.response.code === 204) {",
+							"    pm.test(\"204 response has no content\", function () {",
+							"        pm.expect(pm.response.text()).to.be.empty;",
+							"    });",
+							"}",
+							"",
+							"// Test: If 404, validate error response",
+							"if (pm.response.code === 404) {",
+							"    pm.test(\"Response is JSON\", function () {",
+							"        pm.response.to.have.header(\"Content-Type\");",
+							"        pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"    });",
+							"",
+							"    pm.test(\"404 response contains error message\", function () {",
+							"        const jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.have.property('error').or.to.have.property('message');",
+							"    });",
+							"}",
+							"",
+							"// Test: Clear saved company ID after successful deletion",
+							"if (pm.response.code === 200 || pm.response.code === 204) {",
+							"    pm.test(\"Clear company ID from collection variables\", function () {",
+							"        const requestedId = pm.request.url.getPath().split('/').pop();",
+							"        const savedId = pm.collectionVariables.get(\"companyId\");",
+							"        ",
+							"        if (savedId && savedId.toString() === requestedId) {",
+							"            pm.collectionVariables.unset(\"companyId\");",
+							"            console.log(\"Cleared company ID from collection variables\");",
+							"        }",
+							"    });",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/companies/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"companies",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id"
+						}
+					]
+				},
+				"description": "Delete a company by ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Partial Update Company",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// Test: Status code is 200 or 404",
+							"pm.test(\"Status code is 200 or 404\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);",
+							"});",
+							"",
+							"// Test: Response time is acceptable",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"// Test: Response is JSON",
+							"pm.test(\"Response is JSON\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});",
+							"",
+							"// Test: If 200, response contains partially updated company object",
+							"if (pm.response.code === 200) {",
+							"    pm.test(\"Response contains partially updated company object\", function () {",
+							"        const jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.be.an('object');",
+							"        pm.expect(jsonData).to.have.property('id');",
+							"        pm.expect(jsonData).to.have.property('name');",
+							"    });",
+							"",
+							"    pm.test(\"Partially updated company has correct data types\", function () {",
+							"        const jsonData = pm.response.json();",
+							"        ",
+							"        pm.expect(jsonData.id).to.be.a('number');",
+							"        pm.expect(jsonData.name).to.be.a('string');",
+							"        ",
+							"        if (jsonData.hasOwnProperty('email')) {",
+							"            pm.expect(jsonData.email).to.be.a('string');",
+							"        }",
+							"        if (jsonData.hasOwnProperty('phone')) {",
+							"            pm.expect(jsonData.phone).to.be.a('string');",
+							"        }",
+							"        if (jsonData.hasOwnProperty('address')) {",
+							"            pm.expect(jsonData.address).to.be.a('string');",
+							"        }",
+							"    });",
+							"",
+							"    pm.test(\"Company ID remains unchanged\", function () {",
+							"        const jsonData = pm.response.json();",
+							"        const requestedId = pm.request.url.getPath().split('/').pop();",
+							"        pm.expect(jsonData.id.toString()).to.equal(requestedId);",
+							"    });",
+							"",
+							"    pm.test(\"Only specified fields are updated\", function () {",
+							"        const jsonData = pm.response.json();",
+							"        const requestBody = JSON.parse(pm.request.body.raw);",
+							"        ",
+							"        // Verify that fields sent in request are present in response",
+							"        Object.keys(requestBody).forEach(function(key) {",
+							"            pm.expect(jsonData).to.have.property(key);",
+							"        });",
+							"    });",
+							"",
+							"    pm.test(\"Unspecified fields remain in response\", function () {",
+							"        const jsonData = pm.response.json();",
+							"        // Company should still have all its properties, not just the updated ones",
+							"        pm.expect(jsonData).to.have.property('id');",
+							"        pm.expect(jsonData).to.have.property('name');",
+							"    });",
+							"}",
+							"",
+							"// Test: If 404, validate error response",
+							"if (pm.response.code === 404) {",
+							"    pm.test(\"404 response contains error message\", function () {",
+							"        const jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.have.property('error').or.to.have.property('message');",
+							"    });",
+							"}"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Acme Corp\",\"phone\":\"+1-415-555-0199\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/companies/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"companies",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Companies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// Test: Status code is 200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Test: Response time is acceptable",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"// Test: Response is JSON",
+							"pm.test(\"Response is JSON\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});",
+							"",
+							"// Test: Response body is an array",
+							"pm.test(\"Response body is an array\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.be.an('array');",
+							"});",
+							"",
+							"// Test: Search results contain company objects with required fields",
+							"pm.test(\"Search results have required fields\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    ",
+							"    if (jsonData.length > 0) {",
+							"        jsonData.forEach(function(company) {",
+							"            pm.expect(company).to.have.property('id');",
+							"            pm.expect(company).to.have.property('name');",
+							"            pm.expect(company.id).to.be.a('number');",
+							"            pm.expect(company.name).to.be.a('string');",
+							"        });",
+							"    }",
+							"});",
+							"",
+							"// Test: Validate data types for company properties",
+							"pm.test(\"Company properties have correct data types\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    ",
+							"    if (jsonData.length > 0) {",
+							"        jsonData.forEach(function(company) {",
+							"            pm.expect(company.id).to.be.a('number');",
+							"            pm.expect(company.name).to.be.a('string');",
+							"            ",
+							"            if (company.hasOwnProperty('email')) {",
+							"                pm.expect(company.email).to.be.a('string');",
+							"            }",
+							"            if (company.hasOwnProperty('phone')) {",
+							"                pm.expect(company.phone).to.be.a('string');",
+							"            }",
+							"            if (company.hasOwnProperty('address')) {",
+							"                pm.expect(company.address).to.be.a('string');",
+							"            }",
+							"        });",
+							"    }",
+							"});",
+							"",
+							"// Test: Search query parameter is present",
+							"pm.test(\"Search query parameter is present in request\", function () {",
+							"    const url = pm.request.url;",
+							"    pm.expect(url.query.has('q')).to.be.true;",
+							"});",
+							"",
+							"// Test: Pagination parameters are valid if present",
+							"pm.test(\"Pagination parameters are valid\", function () {",
+							"    const url = pm.request.url;",
+							"    ",
+							"    if (url.query.has('page')) {",
+							"        const page = parseInt(url.query.get('page'));",
+							"        pm.expect(page).to.be.a('number');",
+							"        pm.expect(page).to.be.at.least(1);",
+							"    }",
+							"    ",
+							"    if (url.query.has('limit')) {",
+							"        const limit = parseInt(url.query.get('limit'));",
+							"        pm.expect(limit).to.be.a('number');",
+							"        pm.expect(limit).to.be.at.least(1);",
+							"    }",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/companies/search?q=acme&page=1&limit=10",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"companies",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "acme"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 OK - Search results",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/companies/search?q=acme&page=1&limit=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"companies",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "acme"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\"results\":[{\"id\":\"9d5f7b86-1b5b-4a75-9a1a-3e6c2e9d12a1\",\"name\":\"Acme Corp\",\"address\":\"123 Market St, San Francisco, CA\",\"phone\":\"+1-415-555-0100\",\"website\":\"https://acme.example\",\"createdAt\":\"2024-11-01T10:00:00.000Z\",\"updatedAt\":\"2024-11-15T12:00:00.000Z\"}],\"page\":1,\"limit\":10,\"total\":1}"
+				}
+			]
+		}
+	]
+}
