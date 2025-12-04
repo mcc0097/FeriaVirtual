@@ -1,12 +1,12 @@
 #3D Virtual Job Fair – Web Platform
 
-📝 Project Overview
+# 📝 Project Overview
 
 The 3D Virtual Job Fair is a platform designed to connect companies with talent through an interactive 3D environment where candidates can visit virtual booths, learn about companies, access job offers, and stay updated with corporate news.
 
 This document describes the architecture, technologies, and functionalities implemented in the web component of the project, which includes both the frontend and backend systems.
 
-🚀 1. Project Objective
+## 🚀 1. Project Objective
 
 The main objective is to provide a web platform that serves:
 
@@ -20,7 +20,7 @@ An intuitive experience for platform administrators
 
 The web module acts as a gateway between users and the 3D environment, managing authentication, registration, dashboards, and data storage.
 
-🧩 2. General Architecture
+## 🧩 2. General Architecture
 
 The platform is composed of two core modules:
 
@@ -30,7 +30,7 @@ Backend: A secure API responsible for data management and communication with the
 
 Both modules interact through HTTP/REST requests over a containerized infrastructure.
 
-🎨 3. Frontend
+## 🎨 3. Frontend
 🛠️ Technologies Used
 
 HTML5
@@ -84,7 +84,7 @@ View their virtual profile within the fair
 
 Manage internal data or publications
 
-🏗️ 4. Backend
+## 🏗️ 4. Backend
 🛠️ Technologies Used
 
 Node.js
@@ -134,7 +134,7 @@ Networking and data persistence configuration
 
 This setup simplifies deployment, maintenance, and scalability.
 
-🗂️ 5. Project Structure
+## 🗂️ 5. Project Structure
 Frontend
 /frontend
   /components
